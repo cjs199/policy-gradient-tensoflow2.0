@@ -43,7 +43,7 @@ act_list = []
 reward_list = []
 
 # 初始化加权分数
-calc_reward = -2.4062911
+calc_reward = -1.3128734
 
 # 创建并打印模型
 train_model = PG(act_dim, 5e-4)
@@ -98,7 +98,7 @@ def run():
     calc_reward = calc_reward * 0.99 + total_reward * 0.01
 
     # 将训练结果追加到日志中
-    cjs_util.appand_log('./策略梯度/train.log',
+    cjs_util.appand_log('./train.log',
                         '总共运行步数: ' + cjs_util.add_append_str(str(total_step), 0, 4, ' ') +
                         ' , 分数: ' + cjs_util.add_append_str(str(total_reward), 0, 5, ' ') +
                         ' , 加权分数: ' + cjs_util.add_append_str(str(calc_reward), 0, 10) + '\r')
@@ -136,7 +136,7 @@ def load_model():
 
 # 加载模型权重
 def load_weights(model):
-    model.load_weights('./策略梯度/dqn')
+    model.load_weights('./策略梯度/pg_weights')
 
 
 # 保存模型
@@ -204,7 +204,7 @@ def test_mode():
 if __name__ == '__main__':
     
     # 训练模型
-    # tarin_mode()
+    tarin_mode()
 
     # 测试模型,不训练更新模型
-    test_mode()
+    # test_mode()
