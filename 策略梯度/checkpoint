@@ -1,0 +1,2 @@
+model_checkpoint_path: "pg_weights"
+all_model_checkpoint_paths: "pg_weights"
