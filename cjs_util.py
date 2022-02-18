@@ -1,7 +1,7 @@
 # 处理窗口
 import numpy as np
 
-# 追加参数截取
+# 字符串不足时追加参数再截取,使得文本更加整齐
 def add_append_str(s,begin,end,append_s='0'):
     s += end * append_s
     return s[begin:end]

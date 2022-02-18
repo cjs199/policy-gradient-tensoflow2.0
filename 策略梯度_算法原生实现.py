@@ -4,6 +4,18 @@ import cjs_util
 import gym
 from pg_ import *
 
+# 解决 tensorflow2 加载模型时报错的问题
+# pip install keras==2.6.0 -i https://pypi.tuna.tsinghua.edu.cn/simple
+
+# 游戏环境完善
+# pip install gym -i https://pypi.tuna.tsinghua.edu.cn/simple
+# pip install ale-py  -i https://pypi.tuna.tsinghua.edu.cn/simple
+# pip install gym[accept-rom-license] -i https://pypi.tuna.tsinghua.edu.cn/simple
+
+# 安装后会报一些错,但测试已经可以运行
+# pip install gym[all] -i https://pypi.tuna.tsinghua.edu.cn/simple
+
+
 # 需要放在tensorflow调用前 , 动态显存,不要全部占用
 gpus = tf.config.experimental.list_physical_devices(device_type='GPU')
 for gpu in gpus:
@@ -118,17 +130,20 @@ def learn():
     gr = gamma_reward(reward_list)
     train_model.learn(obs_list, act_list, gr)
 
+# 加载模型,用来测试
 def load_model():
     return tf.keras.models.load_model('./策略梯度/pg')
 
-# 加载模型
+# 加载模型权重
 def load_weights(model):
     model.load_weights('./策略梯度/dqn')
 
 
 # 保存模型
 def save_weights(model):
+    # 保存权重,下一次启动时加载此模型用来训练
     model.save_weights('./策略梯度/pg_weights')
+    # 保存模型,此模型测试使用,不能用来训练
     model.save('./策略梯度/pg')
 
 # 训练模型
