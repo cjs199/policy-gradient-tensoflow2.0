@@ -204,7 +204,7 @@ def test_mode():
 if __name__ == '__main__':
     
     # 训练模型
-    tarin_mode()
+    # tarin_mode()
 
     # 测试模型,不训练更新模型
-    # test_mode()
+    test_mode()
